@@ -1,4 +1,4 @@
-# TriTrainingLogin
+# TriTrainingLog
 
 Simple SvelteKit CRUD web app that interacts with a NestJS backend.
 
