@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ActivityCard from 'src/components/ActivityCard.svelte';
 	import ActivityForm from 'src/components/ActivityForm.svelte';
-	import type { Activity } from 'src/utils/activity';
+	import { formatDateForInput, type Activity, type ActivityDto } from 'src/utils/activity';
 	import { onMount } from 'svelte';
 
 	let activities: Activity[] = [];
@@ -9,6 +9,60 @@
 	onMount(async () => {
 		fetchActivities();
 	});
+
+	let isEditing = false;
+	let editingActivityId: string;
+	let activityDto: ActivityDto = {
+		name: 'Evening Run',
+		sport: 'run',
+		distance: 15000,
+		note: 'Nice steady run. Good pace.',
+		date: formatDateForInput(new Date())
+	};
+
+	async function handleSubmit() {
+		const res = await fetch(
+			`http://localhost:3000/activities${isEditing ? `/${editingActivityId}` : ''}`,
+			{
+				method: isEditing ? 'PATCH' : 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(activityDto)
+			}
+		);
+		if (res.ok) {
+			fetchActivities();
+		} else {
+			const body = await res.json();
+			const errorMessage = body.message.join('\n');
+			alert(errorMessage);
+		}
+	}
+
+	function handleReset() {
+		isEditing = false;
+		editingActivityId = '';
+		activityDto = {
+			name: '',
+			sport: '',
+			distance: 0,
+			note: '',
+			date: formatDateForInput(new Date())
+		};
+	}
+
+	function editActivity(a: Activity) {
+		isEditing = true;
+		editingActivityId = a.id;
+		activityDto = {
+			name: a.name,
+			sport: a.sport,
+			distance: a.distance,
+			note: a.note,
+			date: formatDateForInput(new Date(a.date))
+		};
+	}
 
 	async function fetchActivities() {
 		const res = await fetch('http://localhost:3000/activities');
@@ -20,8 +74,8 @@
 </script>
 
 <div class="space-y-4 mt-8">
-	<ActivityForm refetch={fetchActivities} />
+	<ActivityForm {activityDto} {handleSubmit} {handleReset} {isEditing} />
 	{#each activities as activity (activity.id)}
-		<ActivityCard {activity} refetch={fetchActivities} />
+		<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
 	{/each}
 </div>
