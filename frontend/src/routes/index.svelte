@@ -2,6 +2,7 @@
 	import ActivityCard from 'src/components/ActivityCard.svelte';
 	import ActivityForm from 'src/components/ActivityForm.svelte';
 	import { formatDateForInput, type Activity, type ActivityDto } from 'src/utils/activity';
+	import type { FormMode } from 'src/utils/other';
 	import { onMount } from 'svelte';
 
 	let activities: Activity[] = [];
@@ -10,7 +11,8 @@
 		fetchActivities();
 	});
 
-	let isEditing = false;
+	let showForm = false;
+	let mode: FormMode = 'create';
 	let editingActivityId: string;
 	let activityDto: ActivityDto = {
 		name: 'Evening Run',
@@ -22,9 +24,9 @@
 
 	async function handleSubmit() {
 		const res = await fetch(
-			`http://localhost:3000/activities${isEditing ? `/${editingActivityId}` : ''}`,
+			`http://localhost:3000/activities${mode === 'edit' ? `/${editingActivityId}` : ''}`,
 			{
-				method: isEditing ? 'PATCH' : 'POST',
+				method: mode === 'edit' ? 'PATCH' : 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
@@ -33,6 +35,7 @@
 		);
 		if (res.ok) {
 			fetchActivities();
+			handleReset();
 		} else {
 			const body = await res.json();
 			const errorMessage = body.message.join('\n');
@@ -41,7 +44,8 @@
 	}
 
 	function handleReset() {
-		isEditing = false;
+		showForm = false;
+		mode = 'create';
 		editingActivityId = '';
 		activityDto = {
 			name: '',
@@ -52,8 +56,13 @@
 		};
 	}
 
+	function triggerShowForm() {
+		showForm = true;
+	}
+
 	function editActivity(a: Activity) {
-		isEditing = true;
+		showForm = true;
+		mode = 'edit';
 		editingActivityId = a.id;
 		activityDto = {
 			name: a.name,
@@ -74,7 +83,7 @@
 </script>
 
 <div class="space-y-4 mt-8">
-	<ActivityForm {activityDto} {handleSubmit} {handleReset} {isEditing} />
+	<ActivityForm {activityDto} {handleSubmit} {handleReset} {mode} {showForm} {triggerShowForm} />
 	{#each activities as activity (activity.id)}
 		<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
 	{/each}

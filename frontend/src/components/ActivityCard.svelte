@@ -32,5 +32,7 @@
 		<span>{activity.name}</span>
 	</p>
 	<p>🛣 {getDistanceString(activity.distance)}</p>
-	<p>📝 {activity.note}</p>
+	{#if activity.note}
+		<p>📝 {activity.note}</p>
+	{/if}
 </div>
