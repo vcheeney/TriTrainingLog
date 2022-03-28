@@ -87,7 +87,13 @@
 
 <div class="space-y-4 mt-8">
 	<ActivityForm {activityDto} {handleSubmit} {handleReset} {mode} {showForm} {triggerShowForm} />
-	{#each activities as activity (activity.id)}
-		<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
-	{/each}
+	{#if activities.length}
+		<div class="space-y-4">
+			{#each activities as activity (activity.id)}
+				<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
+			{/each}
+		</div>
+	{:else if !showForm}
+		<p>There are no activities... =(</p>
+	{/if}
 </div>
