@@ -1,8 +1,8 @@
 <script lang="ts">
 	import ActivityCard from 'src/components/ActivityCard.svelte';
 	import ActivityForm from 'src/components/ActivityForm.svelte';
-	import { formatDateForInput, type Activity, type ActivityDto } from 'src/utils/activity';
-	import type { FormMode } from 'src/utils/other';
+	import type { Activity, ActivityDto } from 'src/utils/activity';
+	import { fixDateForTimezone, formatDateForInput, type FormMode } from 'src/utils/other';
 	import { onMount } from 'svelte';
 
 	let activities: Activity[] = [];
@@ -30,7 +30,10 @@
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify(activityDto)
+				body: JSON.stringify({
+					...activityDto,
+					date: fixDateForTimezone(new Date(activityDto.date))
+				})
 			}
 		);
 		if (res.ok) {
