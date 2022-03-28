@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { getDistanceString, getEmoji, type Activity } from 'src/utils/activity';
+	import { API_BASE_PATH } from 'src/utils/variables';
 	import IconButton from './IconButton.svelte';
 	import DeleteIcon from './icons/DeleteIcon.svelte';
 	import EditIcon from './icons/EditIcon.svelte';
@@ -10,7 +11,7 @@
 	export let editActivity: (a: Activity) => void;
 
 	async function deleteActivity(id: string) {
-		await fetch(`http://localhost:3000/activities/${id}`, {
+		await fetch(`${API_BASE_PATH}/activities/${id}`, {
 			method: 'DELETE'
 		});
 		refetch();
