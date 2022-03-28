@@ -4,6 +4,7 @@ import {
   IsDateString,
   IsOptional,
   IsNotEmpty,
+  Min,
 } from 'class-validator';
 
 export class CreateActivityDto {
@@ -17,6 +18,7 @@ export class CreateActivityDto {
 
   @IsNumber()
   @IsNotEmpty()
+  @Min(1)
   distance: number;
 
   @IsDateString()
