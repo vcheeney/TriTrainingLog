@@ -1,5 +1,5 @@
 export class Activity {
-  id: number;
+  id: string;
   sport: string;
   distance: number;
   name: string;

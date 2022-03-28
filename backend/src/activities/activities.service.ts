@@ -4,12 +4,13 @@ import { Activity } from './entities/activity.entity';
 import { CreateActivityDto } from './dto/create-activity.dto';
 import { ActivityCreatedEvent } from './events/activity-created.event';
 import { UpdateActivityDto } from './dto/update-activity.dto';
+import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class ActivitiesService {
   public activities: Activity[] = [
     {
-      id: 1,
+      id: uuidv4(),
       sport: 'swim',
       distance: 3000,
       name: 'Afternoon Swim',
@@ -17,7 +18,7 @@ export class ActivitiesService {
       date: new Date(2022, 2, 27),
     },
     {
-      id: 2,
+      id: uuidv4(),
       sport: 'bike',
       distance: 45000,
       name: 'Evening Ride',
@@ -25,7 +26,7 @@ export class ActivitiesService {
       date: new Date(2022, 2, 27),
     },
     {
-      id: 3,
+      id: uuidv4(),
       sport: 'run',
       distance: 8000,
       name: 'Morning Run',
@@ -37,7 +38,7 @@ export class ActivitiesService {
   constructor(private eventEmitter: EventEmitter2) {}
   create(createActivityDto: CreateActivityDto) {
     const activity = {
-      id: this.activities.length + 1,
+      id: uuidv4(),
       ...createActivityDto,
       date: new Date(createActivityDto.date),
     };
@@ -58,11 +59,7 @@ export class ActivitiesService {
     return this.activities;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} activity`;
-  // }
-
-  update(id: number, updateActivityDto: UpdateActivityDto) {
+  update(id: string, updateActivityDto: UpdateActivityDto) {
     const activity = this.activities.find((activity) => activity.id === id);
     if (!activity) throw new Error('Activity not found');
 
@@ -82,7 +79,7 @@ export class ActivitiesService {
     return updatedActivity;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     const activity = this.activities.find((activity) => activity.id === id);
     if (!activity) throw new Error('Activity not found');
 
