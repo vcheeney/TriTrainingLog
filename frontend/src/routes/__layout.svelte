@@ -1,4 +1,5 @@
 <script>
+	import GitHubIcon from 'src/components/icons/GitHubIcon.svelte';
 	import '../app.css';
 </script>
 
@@ -8,8 +9,11 @@
 		<a
 			href="https://github.com/vcheeney/TriTrainingLog"
 			target="blank"
-			class="text-gray-500 text-sm underline">GitHub</a
+			class="space-x-2 flex items-center  text-gray-500 hover:text-gray-600 active:bg-gray-300 uppercase bg-gray-100 hover:bg-gray-200 rounded-lg px-2 py-1 transition-colors"
 		>
+			<span>Source</span>
+			<GitHubIcon />
+		</a>
 	</div>
 </div>
 
