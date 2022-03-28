@@ -16,6 +16,10 @@ const config = {
 					src: path.resolve('./src')
 				}
 			}
+		},
+		endpointExtensions: ['.js', '.ts'],
+		files: {
+			hooks: 'src/hooks.ts'
 		}
 	}
 };

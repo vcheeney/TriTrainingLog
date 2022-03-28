@@ -5,6 +5,9 @@
 declare namespace App {
 	// interface Locals {}
 	// interface Platform {}
-	// interface Session {}
+	export interface Session {
+		apiUrl: string;
+	}
+
 	// interface Stuff {}
 }

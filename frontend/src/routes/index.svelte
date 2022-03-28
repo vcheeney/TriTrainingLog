@@ -1,9 +1,9 @@
 <script lang="ts">
+	import { session } from '$app/stores';
 	import ActivityCard from 'src/components/ActivityCard.svelte';
 	import ActivityForm from 'src/components/ActivityForm.svelte';
 	import type { Activity, ActivityDto } from 'src/utils/activity';
 	import { fixDateForTimezone, formatDateForInput, type FormMode } from 'src/utils/other';
-	import { API_BASE_PATH } from 'src/utils/variables';
 	import { onMount } from 'svelte';
 
 	let activities: Activity[] = [];
@@ -25,7 +25,7 @@
 
 	async function handleSubmit() {
 		const res = await fetch(
-			`${API_BASE_PATH}/activities${mode === 'edit' ? `/${editingActivityId}` : ''}`,
+			`${$session.apiUrl}/activities${mode === 'edit' ? `/${editingActivityId}` : ''}`,
 			{
 				method: mode === 'edit' ? 'PATCH' : 'POST',
 				headers: {
@@ -78,7 +78,7 @@
 	}
 
 	async function fetchActivities() {
-		const res = await fetch(`${API_BASE_PATH}/activities`);
+		const res = await fetch(`${$session.apiUrl}/activities`);
 		activities = await res.json();
 		activities = [
 			...activities.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())

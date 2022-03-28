@@ -1,0 +1,18 @@
+version: "3.4"
+
+services:
+  backend:
+    container_name: ttlbackend
+    image: vcheeney/ttl-backend
+    build: ./backend
+    ports:
+      - "3000:3000"
+
+  frontend:
+    container_name: ttlfrontend
+    image: vcheeney/ttl-frontend
+    build: ./frontend
+    environment:
+      - VITE_API_BASE_PATH=http://localhost:3000
+    ports:
+      - "5000:5000"
