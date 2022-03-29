@@ -8,29 +8,40 @@ A simple SvelteKit CRUD web app that interacts with a NestJS backend.
 
 - [☀ Introduction](#-introduction)
 - [💭 What I learned](#-what-i-learned)
-- [📷 Preview](#-preview)
 - [💿 Setup](#-setup)
   - [Prerequisites](#prerequisites)
   - [Installation steps](#installation-steps)
   - [Usage](#usage)
+    - [Production](#production)
+    - [Development](#development)
 - [🛠 Technologies Used](#-technologies-used)
 
 ## ☀ Introduction
 
-Coming Soon
+When working on the little [BoredApesTransfers](https://github.com/vcheeney/BoredApesTransfers) project I created last Friday, I got very excited about Svelte. So much that I quite literally spent my whole Sunday afternoon watching talks from [Rich Harris](https://twitter.com/Rich_Harris?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor) (creator of Svelte) explaining to audiences how JavaScript frameworks like React are not so "reactive". My favourite ones were:
+
+- [Rich Harris: Futuristic Web Development](https://www.youtube.com/watch?v=qSfdtmcZ4d0&t=1111s)
+- [The Return of 'Write Less, Do More' by Rich Harris | JSCAMP 2019](https://www.youtube.com/watch?v=BzX4aTRPzno)
+- [Have Single-Page Apps Ruined the Web? | Transitional Apps with Rich Harris, NYTimes](https://www.youtube.com/watch?v=860d8usGC0o)
+
+I could list much more but that's pretty much what happens when you dive deep into such a rabbit hole! 😅
+
+Therefore, to get some more practice (and to try the NestJS node framework), I decided to build this simple "Todo" style CRUD web app.
 
 ## 💭 What I learned
 
-Coming Soon
-
-## 📷 Preview
-
-Coming Soon
+- I learned about the `__layout.svelte` file which makes it easy to create a consistent layout across pages.
+- I discovered the `<slot/>` tag which is pretty much the equivalent of `{children}` in React.
+- As I tried to color the GitHub SVG icon in the navbar, I discovered that I could use the text color as long as I set the svg `fill="currentColor"` prop.
+- Learned the general structure of a NestJS project
+- Learned about the ValidationPipe in NestJS and how to automatically enforce DTO format with the `class-validator` decorators
+- Did not get to use them much but learned how to emit and listen to events
 
 ## 💿 Setup
 
 ### Prerequisites
 
+- Docker (recommended)
 - Node v16 or above
 - NPM
 
@@ -44,14 +55,26 @@ git clone git@github.com:vcheeney/TriTrainingLog.git
 
 ### Usage
 
-Run the frontend:
+#### Production
+
+To run everything in one go:
+
+```sh
+docker-compose up
+```
+
+#### Development
+
+If you prefer to run the complete development setup, do the following.
+
+In one terminal, run the frontend:
 
 ```sh
 cd frontend
 npm run dev
 ```
 
-Run the backend:
+In another terminal, run the backend:
 
 ```sh
 cd backend
