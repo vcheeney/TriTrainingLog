@@ -16,10 +16,10 @@
 	let mode: FormMode = 'create';
 	let editingActivityId: string;
 	let activityDto: ActivityDto = {
-		name: 'Evening Run',
-		sport: 'run',
-		distance: 15000,
-		note: 'Nice steady run. Good pace.',
+		name: '',
+		sport: '',
+		distance: 0,
+		note: '',
 		date: formatDateForInput(new Date())
 	};
 

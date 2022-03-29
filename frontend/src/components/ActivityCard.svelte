@@ -18,7 +18,7 @@
 	}
 </script>
 
-<div class="bg-white text-gray-700 p-4 rounded-xl relative">
+<div class="bg-white text-gray-700 p-4 rounded-xl relative" data-cy="activity-card">
 	<div class="absolute top-2 right-2">
 		<IconButton action={() => editActivity(activity)}>
 			<EditIcon />

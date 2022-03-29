@@ -7,7 +7,7 @@
 </script>
 
 <FieldLayout {label}>
-	<select class="field" bind:value>
+	<select class="field" bind:value id={label}>
 		{#each options as option (option.label)}
 			<option value={option.value}>{option.label}</option>
 		{/each}

@@ -48,15 +48,15 @@
 					}
 				]}
 			/>
-			<FieldNumber label="Distance (m)" bind:value={activityDto.distance} />
+			<FieldNumber label="Distance" bind:value={activityDto.distance} />
 			<FieldText label="Note" bind:value={activityDto.note} />
 			<FieldDate label="Date" bind:value={activityDto.date} />
 			<div class="grid sm:grid-cols-4 w-full pt-4">
 				<div class="col-span-1" />
 				<div class="col-span-3 space-x-2">
-					<button type="submit" class="px-4 py-2 bg-gray-800 rounded-lg text-white"
-						>{mode === 'edit' ? 'Edit' : 'Create'}</button
-					>
+					<button type="submit" class="px-4 py-2 bg-gray-800 rounded-lg text-white">
+						{mode === 'edit' ? 'Edit' : 'Create'}
+					</button>
 					<button type="reset" class="px-4 py-2 bg-gray-200 rounded-lg text-gray-600">Cancel</button
 					>
 				</div>
@@ -64,7 +64,11 @@
 		</form>
 	</div>
 {:else}
-	<button class="px-4 py-2 bg-gray-800 rounded-lg text-white" on:click={triggerShowForm}
-		>Log an activity</button
+	<button
+		class="px-4 py-2 bg-gray-800 rounded-lg text-white"
+		on:click={triggerShowForm}
+		data-cy="log-activity-button"
 	>
+		Log an activity
+	</button>
 {/if}
