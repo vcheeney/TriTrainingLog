@@ -1,0 +1,11 @@
+version: "3.4"
+
+services:
+  backend:
+    container_name: tri-backend
+    image: vcheeney/tri-backend
+    build: ./backend
+    environment:
+      - DATABASE_URL=postgresql://admin:mysecretpassword@tri-database:5432/mydb?schema=public
+    ports:
+      - "3000:3000"

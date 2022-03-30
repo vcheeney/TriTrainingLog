@@ -1,5 +1,6 @@
 describe('TriTrainingLog e2e testing', () => {
 	beforeEach(() => {
+		cy.task('reset:db');
 		cy.visit('http://localhost:5000/');
 	});
 

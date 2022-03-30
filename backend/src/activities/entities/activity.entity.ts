@@ -4,5 +4,5 @@ export class Activity {
   distance: number;
   name: string;
   date: Date;
-  note: string;
+  note?: string;
 }

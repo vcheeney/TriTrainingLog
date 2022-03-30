@@ -1,1 +1,1 @@
-{ "pluginsFile": false, "testFiles": "**/*spec.{js,jsx,ts,tsx}" }
+{ "testFiles": "**/*spec.{js,jsx,ts,tsx}" }

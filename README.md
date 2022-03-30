@@ -60,7 +60,7 @@ git clone git@github.com:vcheeney/TriTrainingLog.git
 To run everything in one go:
 
 ```sh
-docker-compose up
+docker-compose -f docker-compose.yml -f dc.backend.yml -f dc.frontend.yml up
 ```
 
 #### Development
