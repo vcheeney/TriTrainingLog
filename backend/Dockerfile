@@ -16,4 +16,6 @@ RUN npm run build
 ENV NODE_ENV=production
 
 # Set the entry point
-CMD ["npm", "run", "start:prod"]
+COPY ./docker/entrypoint.sh /usr/local/bin
+COPY ./docker/run-migration.sh /usr/local/bin
+ENTRYPOINT ["/bin/sh", "/usr/local/bin/entrypoint.sh"]
