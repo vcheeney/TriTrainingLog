@@ -6,6 +6,7 @@ services:
     image: vcheeney/tri-frontend
     build: ./frontend
     environment:
-      - VITE_API_BASE_PATH=http://localhost:3000
+      - FRONTEND_PORT
+      - VITE_API_BASE_PATH=http://localhost:${BACKEND_PORT}
     ports:
-      - "5000:5000"
+      - "${FRONTEND_PORT}:${FRONTEND_PORT}"

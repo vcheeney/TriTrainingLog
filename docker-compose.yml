@@ -5,7 +5,7 @@ services:
     image: postgres
     container_name: tri-database
     environment:
-      - POSTGRES_PASSWORD=mysecretpassword
-      - POSTGRES_DB=mydb
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
     ports:
       - "5432:5432"

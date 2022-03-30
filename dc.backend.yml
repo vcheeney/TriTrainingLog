@@ -6,6 +6,7 @@ services:
     image: vcheeney/tri-backend
     build: ./backend
     environment:
-      - DATABASE_URL=postgresql://postgres:mysecretpassword@tri-database:5432/mydb?schema=public
+      - BACKEND_PORT
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@tri-database:5432/${POSTGRES_DB}?schema=public
     ports:
-      - "3000:3000"
+      - "${BACKEND_PORT}:${BACKEND_PORT}"

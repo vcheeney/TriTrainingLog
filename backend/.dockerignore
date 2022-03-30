@@ -3,3 +3,4 @@ npm-debug.log
 .cache
 .vscode
 .env
+.env.*

@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 import path from 'path';
+import 'dotenv/config';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -15,6 +16,12 @@ const config = {
 				alias: {
 					src: path.resolve('./src')
 				}
+			},
+			server: {
+				port: process.env['FRONTEND_PORT'] || 5000
+			},
+			preview: {
+				port: process.env['FRONTEND_PORT'] || 5000
 			}
 		},
 		endpointExtensions: ['.js', '.ts'],

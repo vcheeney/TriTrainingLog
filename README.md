@@ -10,10 +10,9 @@ A simple SvelteKit CRUD web app that interacts with a NestJS backend.
 - [💭 What I learned](#-what-i-learned)
 - [💿 Setup](#-setup)
   - [Prerequisites](#prerequisites)
-  - [Installation steps](#installation-steps)
-  - [Usage](#usage)
-    - [Production](#production)
-    - [Development](#development)
+  - [Get started](#get-started)
+    - [Run in production](#run-in-production)
+    - [Run in development](#run-in-development)
 - [🛠 Technologies Used](#-technologies-used)
 
 ## ☀ Introduction
@@ -45,7 +44,7 @@ Therefore, to get some more practice (and to try the NestJS node framework), I d
 - Node v16 or above
 - NPM
 
-### Installation steps
+### Get started
 
 First, clone the repository with the following command:
 
@@ -53,32 +52,41 @@ First, clone the repository with the following command:
 git clone git@github.com:vcheeney/TriTrainingLog.git
 ```
 
-### Usage
-
-#### Production
+#### Run in production
 
 To run everything in one go:
 
 ```sh
+cp .env.example .env
 docker-compose -f docker-compose.yml -f dc.backend.yml -f dc.frontend.yml up
 ```
 
-#### Development
+#### Run in development
 
 If you prefer to run the complete development setup, do the following.
 
-In one terminal, run the frontend:
+In one terminal, start the database:
 
 ```sh
-cd frontend
-npm run dev
+cp .env.example .env
+docker-compose -f docker-compose.yml up
 ```
 
 In another terminal, run the backend:
 
 ```sh
 cd backend
+cp .env.example .env
+npx prisma migrate dev
 npm run start:dev
+```
+
+In another terminal, run the frontend:
+
+```sh
+cd frontend
+cp .env.example .env
+npm run dev
 ```
 
 ## 🛠 Technologies Used
