@@ -4,18 +4,32 @@ describe('TriTrainingLog e2e testing', () => {
 		cy.visit('http://localhost:5000/');
 	});
 
-	it('should display three activities initially', () => {
-		cy.get('[data-cy="activity-card"]').should('have.length', 3);
-	});
+	it('log an activity, edit it, delete it', () => {
+		// visit the page
+		cy.visit('http://localhost:5000/');
 
-	it('should log a now activity', () => {
+		// log an activity
 		cy.get('[data-cy="log-activity-button"]').click();
-		cy.get('input#Name').type('My new cycling activity');
+		cy.get('#Name').click();
+		cy.get('#Name').type('Morning ride with friends! =)');
 		cy.get('select#Sport').select('bike');
-		cy.get('input#Distance').type('{backspace}1000');
-		cy.get('input#Note').type('This is a cool new note 👌');
+		cy.get('#Distance').click();
+		cy.get('#Distance').type('120000');
+		cy.get('#Note').click();
+		cy.get('#Note').type('Long ride with lots of hillss');
 		cy.get('button[type="submit"]').click();
 
-		cy.get('[data-cy="activity-card"]').should('have.length', 4);
+		// edit the activity
+		cy.get(
+			'[data-cy=activity-card]:nth-child(1) > [data-cy=actions] > button:nth-child(1)'
+		).click();
+		cy.get('#Note').click();
+		cy.get('#Note').type('Long ride with lots of hills');
+		cy.get('button[type="submit"]').click();
+
+		// click the delete button
+		cy.get(
+			'[data-cy=activity-card]:nth-child(1) > [data-cy=actions] > button:nth-child(2)'
+		).click();
 	});
 });
