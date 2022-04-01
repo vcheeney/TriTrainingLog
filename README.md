@@ -7,6 +7,7 @@ A simple SvelteKit CRUD web app that interacts with a NestJS backend.
 ## Table of contents <!-- omit in toc -->
 
 - [☀ Introduction](#-introduction)
+- [📹 Preview](#-preview)
 - [💭 What I learned](#-what-i-learned)
 - [💿 Setup](#-setup)
   - [Prerequisites](#prerequisites)
@@ -27,14 +28,23 @@ I could list much more but that's pretty much what happens when you dive deep in
 
 Therefore, to get some more practice (and to try the NestJS node framework), I decided to build this simple "Todo" style CRUD web app.
 
+## 📹 Preview
+
+https://user-images.githubusercontent.com/23345182/161325765-ec369370-21ea-4b69-8d93-503846614331.mp4
+
 ## 💭 What I learned
 
 - I learned about the `__layout.svelte` file which makes it easy to create a consistent layout across pages.
 - I discovered the `<slot/>` tag which is pretty much the equivalent of `{children}` in React.
 - As I tried to color the GitHub SVG icon in the navbar, I discovered that I could use the text color as long as I set the svg `fill="currentColor"` prop.
-- Learned the general structure of a NestJS project
-- Learned about the ValidationPipe in NestJS and how to automatically enforce DTO format with the `class-validator` decorators
-- Did not get to use them much but learned how to emit and listen to events
+- Learned the general structure of a NestJS project.
+- Learned about the ValidationPipe in NestJS and how to automatically enforce DTO format with the `class-validator` decorators.
+- Did not get to use them much but learned how to emit and listen to NestJS events.
+- Practiced my DevOps skills by _dockerizing_ the application to ease development (i.e. Postgres DB running in Docker) and make it easier to run the production app locally.
+- Learned about [Cypress E2E testing](https://docs.cypress.io/) and how to use the desktop app to run end-to-end tests. More specifically:
+  - How to use aliases, wait for requests to complete, wait for text to appear in the app, etc.
+  - How to leverage tasks to trigger actions like resetting the DB between each test.
+  - How to use a generic data tag (i.e **data-cy**) to avoid using classes or IDs for targeting elements in a page.
 
 ## 💿 Setup
 

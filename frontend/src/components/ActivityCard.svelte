@@ -30,7 +30,7 @@
 	<p>📅 {new Date(activity.date).toDateString()}</p>
 	<p>
 		<span>{getEmoji(activity.sport)}</span>
-		<span>{activity.name}</span>
+		<span data-cy="activity-name">{activity.name}</span>
 	</p>
 	<p>🛣 {getDistanceString(activity.distance)}</p>
 	{#if activity.note}

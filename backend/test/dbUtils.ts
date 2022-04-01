@@ -11,7 +11,7 @@ export async function resetDb() {
       distance: 4800,
       name: 'Morning Swim',
       date: new Date('2022-03-29T06:00:00'),
-      note: 'That was a good one!',
+      note: 'Morning swim note',
     },
     {
       id: 'bbb',
@@ -19,6 +19,7 @@ export async function resetDb() {
       distance: 60000,
       name: 'Evening Ride',
       date: new Date('2022-03-28T18:00:00'),
+      note: 'Evening ride note',
     },
     {
       id: 'ccc',

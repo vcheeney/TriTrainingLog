@@ -1,1 +1,1 @@
-{ "testFiles": "**/*spec.{js,jsx,ts,tsx}" }
+{ "testFiles": "**/*spec.{js,jsx,ts,tsx}", "scrollBehavior": false }
