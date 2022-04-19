@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { slide, scale } from 'svelte/transition';
 	import type { ActivityDto } from 'src/utils/activity';
 	import type { FormMode } from 'src/utils/other';
 	import FieldDate from './FieldDate.svelte';
@@ -15,7 +16,7 @@
 </script>
 
 {#if showForm}
-	<div class="bg-white p-4 rounded-xl">
+	<div class="bg-white p-4 rounded-xl" transition:slide>
 		<div class="grid sm:grid-cols-4 w-full mb-4">
 			<div class="col-span-1" />
 			<div class="col-span-3 space-x-2">

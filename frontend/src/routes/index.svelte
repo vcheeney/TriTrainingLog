@@ -5,6 +5,9 @@
 	import type { Activity, ActivityDto } from 'src/utils/activity';
 	import { fixDateForTimezone, formatDateForInput, type FormMode } from 'src/utils/other';
 	import { onMount } from 'svelte';
+	import { quintOut } from 'svelte/easing';
+	import { crossfade } from 'svelte/transition';
+	import { flip } from 'svelte/animate';
 
 	let activities: Activity[] = [];
 
@@ -84,14 +87,34 @@
 			...activities.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
 		];
 	}
+
+	const [send, receive] = crossfade({
+		duration: (d) => Math.sqrt(d * 200),
+
+		fallback(node, params) {
+			const style = getComputedStyle(node);
+			const transform = style.transform === 'none' ? '' : style.transform;
+
+			return {
+				duration: 600,
+				easing: quintOut,
+				css: (t) => `
+					transform: ${transform} scale(${t});
+					opacity: ${t}
+				`
+			};
+		}
+	});
 </script>
 
-<div class="space-y-4 mt-8">
+<div class="space-y-4 my-8">
 	<ActivityForm {activityDto} {handleSubmit} {handleReset} {mode} {showForm} {triggerShowForm} />
 	{#if activities.length}
 		<div class="space-y-4">
 			{#each activities as activity (activity.id)}
-				<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
+				<div in:receive={{ key: activity.id }} out:send={{ key: activity.id }} animate:flip>
+					<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
+				</div>
 			{/each}
 		</div>
 	{:else if !showForm}
