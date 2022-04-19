@@ -15,6 +15,7 @@ A simple SvelteKit CRUD web app that interacts with a NestJS backend.
     - [Run in production](#run-in-production)
     - [Run in development](#run-in-development)
 - [🛠 Technologies Used](#-technologies-used)
+- [🧪 Tests](#-tests)
 
 ## ☀ Introduction
 
@@ -106,5 +107,16 @@ npm run dev
 - [SvelteKit](https://kit.svelte.dev/) - Web app framework
 - [TailwindCSS 3.0.23](https://tailwindcss.com/docs/installation) - Utility-based CSS framework
 - [NestJS 8.1.1](https://nestjs.com/) - Progressive Node.js framework
+
+## 🧪 Tests
+
+In order to run the tests, first make sure that the application is started. You can follow the steps in the [Setup](#-setup) section to do so.
+
+Then, open Cypress and select the test you want to run! 🙌
+
+```sh
+cd frontend
+npx cypress open
+```
 
 #### 🔗 Check out my other [**projects**](https://github.com/vcheeney) on my GitHub profile <!-- omit in toc -->
