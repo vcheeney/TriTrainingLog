@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { slide, scale } from 'svelte/transition';
+	import { slide } from 'svelte/transition';
 	import type { ActivityDto } from 'src/utils/activity';
 	import type { FormMode } from 'src/utils/other';
 	import FieldDate from './FieldDate.svelte';

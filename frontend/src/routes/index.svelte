@@ -6,7 +6,7 @@
 	import { fixDateForTimezone, formatDateForInput, type FormMode } from 'src/utils/other';
 	import { onMount } from 'svelte';
 	import { quintOut } from 'svelte/easing';
-	import { crossfade } from 'svelte/transition';
+	import { crossfade, slide } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 
 	let activities: Activity[] = [];
@@ -110,7 +110,7 @@
 <div class="space-y-4 my-8">
 	<ActivityForm {activityDto} {handleSubmit} {handleReset} {mode} {showForm} {triggerShowForm} />
 	{#if activities.length}
-		<div class="space-y-4">
+		<div class="space-y-4" transition:slide>
 			{#each activities as activity (activity.id)}
 				<div in:receive={{ key: activity.id }} out:send={{ key: activity.id }} animate:flip>
 					<ActivityCard {editActivity} {activity} refetch={fetchActivities} />
